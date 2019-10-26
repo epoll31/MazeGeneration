@@ -4,21 +4,15 @@ using System.Text;
 
 namespace MazeGeneration
 {
-    public class QuickFind
+    public class QuickFind : UnionFind
     {
-        private int[] Data;
-
         public QuickFind(int number)
+            : base(number)
         {
-            Data = new int[number];
-
-            for (int i = 0; i < number; i++)
-            {
-                Data[i] = i;
-            }
+            
         }
 
-        public void Union(int p, int q)
+        public override void Union(int p, int q)
         {
             if (AreConnected(p, q))
             {
@@ -36,14 +30,9 @@ namespace MazeGeneration
             }
         }
 
-        public int Find(int p)
+        public override int Find(int p)
         {
             return Data[p];
-        }
-
-        public bool AreConnected(int p, int q)
-        {
-            return Find(p) == Find(q);
         }
     }
 }
